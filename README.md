@@ -3,7 +3,7 @@
 ## Schritt 1: Messwerte aufnehmen
 Wir sollten als erstes den Sensor testen. Dafür wollen wir nach dem Drücken der A und B Taste (A+B), 10 Messwerte anzeigen. 
 Als erstes benötigen wir aus dem Bereich ``||Input: Eingabe||`` den Block ``||Input: Wenn Knopf A gedrückt||``. Nun ändern wir noch den Knopf A auf A+B.
-Anschließend wollen die Messwere Anzeigen. Da es immer wieder die gleiche Aufgabe ist, können wir eine ``||Loop: Schleife||`` nutzen z.B. ``||Loop: 4-mal wiederholen||``.
+Anschließend wollen die Messwere Anzeigen. Da es immer wieder die gleiche Aufgabe ist, können wir eine ``||Loops: Schleife||`` nutzen z.B. ``||Loops: 4-mal wiederholen||``.
 In dieser Schleif rufen wir immer wieder die Temperatur ab (``||Input: Temperatur (°C)||``) und zeigen diese an (``||basic: Zeige Zahl|``), außerdem machen wir nach jedem Durchgang eine Pause von 1 Sekunde (``||basic: pausiere (ms) 100|``).
 
 
@@ -17,21 +17,29 @@ input.onButtonPressed(Button.AB, function () {
 ```
 
 ## Schritt 2: Messwerte speichern
-Todo
+Nun sollten wir die Werte speichern. Hierfür legen wir eine ``||Variables: Variable||`` vor der Schleife an z.B. ``||Variables: Messwerte||``. 
+In diese Variable kommt ein ``||Array: leeres Array||``, diese findest du unter ``||advanced: Fortgeschritten||`` und dann unter ``||Array: Arrays||``.
+In der Schleife ersetzen wir ``||basic: Zeige Zahl|`` durch ``||Array: list füge Wert am Ende hinzu||``. 
+In den freien Teil kommt unser ``||Input: Temperatur (°C)||`` und die ``||Variables: Variable||`` ``||Variables: list||`` erstzen wir durch ``||Variables: Messwerte||``.
 
 ```blocks
 let Messwerte: number[] = []
 input.onButtonPressed(Button.AB, function () {
     Messwerte = []
     for (let index = 0; index < 10; index++) {
-        Messwerte.unshift(input.temperature())
+        Messwerte.push(input.temperature())
         basic.pause(100)
     }
 })
 ```
 
 ## Schritt 3: Alarm
-Todo
+Um einen dauerhaften Alarm zu erzeugen benötigen wir wieder eine ``||Variables: Variable||``. 
+Diese könnten wir z.B. ``||Variables: Alarm_an||`` nennen und erstellen Sie direkt nach dem Aufnehmen der Messwerte. 
+Wir geben der ``||Variables: Variable||`` den Wert ``||Logic: wahr||`` (diesen Block finden wir im Bereich ``||Logic: Logik||``).
+Nun nutzen wir die ``||Loops: Schleife||`` ``||Loops: während wahr||`` und erstzen das Feld mit dem ``||Logic: wahr||`` durch unsere ``||Variables: Variable||`` ``||Variables: Alarm_an||``, somit wird alles, was jetzt folgt, solange ausgeführt bis, der Alarm deaktiviert wird.
+In der ``||Loops: Schleife||`` kann man jetzt z.B. die RGB-LED blinken lassen oder einen Text auf dem Display ausgeben. Wir wollen aber Töne abspielen. 
+Hierfür suchen wir uns 2 Noten aus dem Bereich ``||Music: Musik||`` aus und fügen es einfach in die ``||Loops: Schleife||`` ein.
 
 ```blocks
 let Alarm_an = false
@@ -39,7 +47,7 @@ let Messwerte: number[] = []
 input.onButtonPressed(Button.AB, function () {
     Messwerte = []
     for (let index = 0; index < 10; index++) {
-        Messwerte.unshift(input.temperature())
+        Messwerte.push(input.temperature())
         basic.pause(100)
     }
     Alarm_an = true
@@ -59,7 +67,7 @@ let Messwerte: number[] = []
 input.onButtonPressed(Button.AB, function () {
     Messwerte = []
     for (let index = 0; index < 10; index++) {
-        Messwerte.unshift(input.temperature())
+        Messwerte.push(input.temperature())
         basic.pause(100)
     }
     Alarm_an = true
@@ -95,7 +103,7 @@ input.onButtonPressed(Button.A, function () {
 input.onButtonPressed(Button.AB, function () {
     Messwerte = []
     for (let index = 0; index < 10; index++) {
-        Messwerte.unshift(input.temperature())
+        Messwerte.push(input.temperature())
         basic.pause(100)
     }
     Alarm_an = true
