@@ -4,7 +4,7 @@
 Wir sollten als erstes den Sensor testen. Dafür wollen wir nach dem Drücken der A und B Taste (A+B), 10 Messwerte anzeigen. 
 Als erstes benötigen wir aus dem Bereich ``||Input: Eingabe||`` den Block ``||Input: Wenn Knopf A gedrückt||``. Nun ändern wir noch den Knopf A auf A+B.
 Anschließend wollen die Messwere Anzeigen. Da es immer wieder die gleiche Aufgabe ist, können wir eine ``||Loops: Schleife||`` nutzen z.B. ``||Loops: 4-mal wiederholen||``.
-In dieser Schleif rufen wir immer wieder die Temperatur ab (``||Input: Temperatur (°C)||``) und zeigen diese an (``||basic: Zeige Zahl|``), außerdem machen wir nach jedem Durchgang eine Pause von 1 Sekunde (``||basic: pausiere (ms) 100|``).
+In dieser Schleif rufen wir immer wieder die Temperatur ab (``||Input: Temperatur (°C)||``) und zeigen diese an (``||basic: Zeige Zahl||``), außerdem machen wir nach jedem Durchgang eine Pause von 1 Sekunde (``||basic: pausiere (ms) 100|``).
 
 
 ```blocks
@@ -19,7 +19,7 @@ input.onButtonPressed(Button.AB, function () {
 ## Schritt 2: Messwerte speichern
 Nun sollten wir die Werte speichern. Hierfür legen wir eine ``||Variables: Variable||`` vor der Schleife an z.B. ``||Variables: Messwerte||``. 
 In diese Variable kommt ein ``||Array: leeres Array||``, diese findest du unter ``||advanced: Fortgeschritten||`` und dann unter ``||Array: Arrays||``.
-In der Schleife ersetzen wir ``||basic: Zeige Zahl|`` durch ``||Array: list füge Wert am Ende hinzu||``. 
+In der Schleife ersetzen wir ``||basic: zeige Zahl|`` durch ``||Array: list füge Wert am Ende hinzu||``. 
 In den freien Teil kommt unser ``||Input: Temperatur (°C)||`` und die ``||Variables: Variable||`` ``||Variables: list||`` erstzen wir durch ``||Variables: Messwerte||``.
 
 ```blocks
@@ -59,7 +59,12 @@ input.onButtonPressed(Button.AB, function () {
 ```
 
 ## Schritt 4: Messwerte Anzeigen
-Todo
+Als nächstes Wollen wir durch das Drücken von Knopf A, alle Messwerte ausgeben. 
+Hierfür benötigen wir aus der ``||Input: Eingabe||`` den Block ``||Input: Wenn Knopf A gedrückt||``. 
+Als erstes sollten wir den Alarm deaktivieren indem wir den Werte der ``||Variables: Variable||`` ``||Variables: Alarm_an||`` auf ``||Logic: falsch||`` setzen.
+Nun müssen wir alle Werte aus unserer Liste ``||Variables: Messwerte||`` abrufen. Für diese Aufgabe gibt es eine spezielle ``||Loops: Schleife||``, die ``||Loops: für Element Wert von list||``.
+Wenn wir die Variable ``||Variables: list||`` zu ``||Variables: Messwerte||`` ändern, dann werden die Werte nacheinander abgerufen. 
+In der ``||Loops: Schleife||`` zeigen wir den Inhalt (``||basic: zeige Zahl||``) der ``||Variables: Variable||`` ``||Variables: Wert||`` und anschließend ein Zeichen (``||basic: zeige Symbol||``) an, damit man die einzelnen Zahlen voneinander unterscheiden kann.
 
 ```blocks
 let Alarm_an = false
@@ -86,7 +91,14 @@ input.onButtonPressed(Button.A, function () {
 ```
 
 ## Schritt 5: Mittelwert anzeigen
-Todo
+Als letztes wollen wir noch den Mittelwert oder Durchschnitt berechnen. Hierfür müssen wir als erstes eine die Taste B ansteuern. 
+Dies tun wir, indem wir aus dem Bereich ``||Input: Eingabe||`` den Block ``||Input: Wenn Knopf B gedrückt||``. 
+Auch hier sollten wir den Alarm deaktivieren, indem wir die ``||Variables: Variable||`` ``||Variables: Alarm_an||`` auf ``||Logic: falsch||`` setzen.
+Nun benötigen wir 2 neue ``||Variables: Variablen||``. In der einen rechnen wir alle Messwerte zusammen und die andere speichert wie viele Messwerte wir haben. 
+Die ``||Variables: Variable||`` ``||Variables: Summe_aller_Messwerte||`` setzen wir auf 0 und um die ``||Variables: Variable||`` ``||Variables: Anzahl_Messwerte||`` zu speichern nutzen wir aus den Bereich ``||Array: Arrays||`` (unter ``||advanced: Fortgeschritten||``) den Block ``||Array: Array-Länge||``.
+Jetzt nutzen wir wieder die ``||Loops: Schleife||`` ``||Loops: für alle Elemente von list||`` und ändern den Inhalt von ``||Variables: Summe_aller_Messwerte||`` **um** Wert.
+Nach der ``||Loops: Schleife||`` zeigen wir die Zahl an (``||basic: zeige Zahl||``), die rauskommt, wenn man ``||Variables: Summe_aller_Messwerte||`` durch ``||Variables: Anzahl_Messwerte||`` teilt.
+Die Rechenoperation ist im Bereich ``||math: Mathematik||`` zu finden (``||math: :||``).
 
 ```blocks
 let Alarm_an = false
