@@ -19,101 +19,22 @@ input.onButtonPressed(Button.AB, function () {
 ## Schritt 2: Messwerte speichern
 Todo
 
-```blocks
-let Messwerte: number[] = []
-input.onButtonPressed(Button.AB, function () {
-    Messwerte = []
-    for (let index = 0; index < 10; index++) {
-        Messwerte.push(input.temperature())
-        basic.pause(100)
-    }
-})
-```
+
 
 ## Schritt 3: Alarm
 Todo
 
-```blocks
-let Alarm_an = false
-let Messwerte: number[] = []
-input.onButtonPressed(Button.AB, function () {
-    Messwerte = []
-    for (let index = 0; index < 10; index++) {
-        Messwerte.push(input.temperature())
-        basic.pause(100)
-    }
-    Alarm_an = true
-    while (Alarm_an) {
-        music.playTone(262, music.beat(BeatFraction.Whole))
-        music.playTone(349, music.beat(BeatFraction.Whole))
-    }
-})
-```
+
 
 ## Schritt 4: Messwerte Anzeigen
 Todo
 
-```blocks
-let Alarm_an = false
-let Messwerte: number[] = []
-input.onButtonPressed(Button.AB, function () {
-    Messwerte = []
-    for (let index = 0; index < 10; index++) {
-        Messwerte.push(input.temperature())
-        basic.pause(100)
-    }
-    Alarm_an = true
-    while (Alarm_an) {
-        music.playTone(262, music.beat(BeatFraction.Whole))
-        music.playTone(349, music.beat(BeatFraction.Whole))
-    }
-})
-input.onButtonPressed(Button.A, function () {
-    Alarm_an = false
-    for (let Wert of Messwerte) {
-        basic.showNumber(Wert)
-        basic.showIcon(IconNames.SmallDiamond)
-    }
-})
-```
+
 
 ## Schritt 5: Mittelwert anzeigen
 Todo
 
-```blocks
-let Alarm_an = false
-let Messwerte: number[] = []
-let Summe_aller_Messwerte = 0
-let Anzahl_Messwerte = 0
-input.onButtonPressed(Button.A, function () {
-    Alarm_an = false
-    for (let Wert of Messwerte) {
-        basic.showNumber(Wert)
-        basic.showIcon(IconNames.SmallDiamond)
-    }
-})
-input.onButtonPressed(Button.AB, function () {
-    Messwerte = []
-    for (let index = 0; index < 10; index++) {
-        Messwerte.push(input.temperature())
-        basic.pause(100)
-    }
-    Alarm_an = true
-    while (Alarm_an) {
-        music.playTone(262, music.beat(BeatFraction.Whole))
-        music.playTone(349, music.beat(BeatFraction.Whole))
-    }
-})
-input.onButtonPressed(Button.B, function () {
-    Alarm_an = false
-    Summe_aller_Messwerte = 0
-    Anzahl_Messwerte = Messwerte.length
-    for (let Wert of Messwerte) {
-        Summe_aller_Messwerte += Wert
-    }
-    basic.showNumber(Summe_aller_Messwerte / Anzahl_Messwerte)
-})
-```
+
 
 ## Als Tutorial verwenden
 
